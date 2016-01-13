@@ -1,8 +1,8 @@
 {
   "name": "keiser-echip-utilities",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Keiser eChip Utilities",
-  "main": "./dist/keu.js",
+  "main": "./src/main.js",
   "scripts": {
     "build": "gulp",
     "watch": "gulp watch"
