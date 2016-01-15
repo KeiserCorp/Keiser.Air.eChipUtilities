@@ -48,9 +48,9 @@ Begins communication with the Keiser eChip Portal Tool.
 
 `onGetRequest` argument is a function called whenever a request to get data is made by the portal.  The function should return the object to be sent in response to the portal request.
 
-`onSetRequest` agrument is a function called whenever a request to send data is made by the portal.  The function should receive a `data` object, and an `onSuccess` function.  The `data` object is the data received from the portal.  The `onSuccess` function should be ran upon successful processing of the `data` object.
+`onSetRequest` agrument is a function called whenever a request to send data is made by the portal.  The function should receive a `data` object and an `onSuccess` function.  The `data` object is the data received from the portal.  The `onSuccess` function should be ran upon successful processing of the `data` object.
 
-Passing a `null` as either argument will disable that capability.
+Passing a `null` as either argument will disable the corresponding portal capability.
 
 ```
 var onGeRequest = function(){ return getUserData(user.id); };
@@ -65,6 +65,19 @@ keu.portalMessenger.enable(onGeRequest, onSetRequest);
 Stops communication with the Keiser eChip Portal Tool.  Communication can not be resumed after a `disable` call until a new connection request is made by the portal.
 
 ### Machine
+
+#### `machine.getMachineDetails(modelNum)`
+Retreives machine details based on model number argument (`modelNum`).
+
+```
+var details = machine.getMachineDetails(0x1335);
+```
+```
+{
+    models : [0x1335, 0x133B],
+    name : 'Biaxial Chest Press A300'
+}
+```
 
 
 ## Contributors
