@@ -228,7 +228,7 @@ module.exports = function () {
 	 *****************************************/
 	var appWindow;
 	var appOrigin;
-	var messengerStatus = {
+	var status = {
 		initialized : false,
 		connected : false,
 		enabled : false,
@@ -238,20 +238,21 @@ module.exports = function () {
 		}
 	};
 
-	var eChipGetMethod;
-	var eChipSetMethod;
+	// Connection request message for reference
+	var connectionRequestID;
 
-	var connectionRequestMessage;
-	var lastRequestID;
+	// Callback methods for portal requests
+	var onGetRequestCallback;
+	var onSetRequestCallback;
 
 	/*****************************************
 	 *	Receive Message
 	 *****************************************/
 	var receiveMessage = function (messageEvent) {
-		if (!messengerStatus.initialized) {
-			initializeMessenger(messageEvent);
+		if (!status.initialized) {
+			initialize(messageEvent);
 		} else {
-			dispatchMessage(messageEvent.data);
+			dispatch(messageEvent.data);
 		}
 	};
 
@@ -260,22 +261,35 @@ module.exports = function () {
 	 *****************************************/
 	var sendMessage = function (messageObject) {
 		if (appWindow && appOrigin) {
-			appWindow.postMessage(JSON.stringify(messageObject), appOrigin)
+			appWindow.postMessage(JSON.stringify(messageObject), appOrigin);
 		}
+	};
+
+	/*****************************************
+	 *	Compose Message
+	 *****************************************/
+	var composeMessage = function (id, type, action, data) {
+		var messageObject = {
+			id : id,
+			type : type,
+			action : action,
+			data : data
+		};
+		sendMessage(messageObject);
 	};
 
 	/*****************************************
 	 *	Messenger Initialization
 	 *****************************************/
-	var initializeMessenger = function (messageEvent) {
+	var initialize = function (messageEvent) {
 		var messageObject = JSON.parse(messageEvent.data);
-		if ((messageObject || {}).action && messageObject.action == MESSENGER_CONST.ACTION.CONNECT) {
+		if ((messageObject || {}).action && messageObject.action === MESSENGER_CONST.ACTION.CONNECT) {
 			appWindow = messageEvent.source;
 			appOrigin = messageEvent.origin;
-			connectionRequestMessage = messageObject;
-			messengerStatus.initialized = true;
-			if (messengerStatus.enabled) {
-				messengerConnect();
+			connectionRequestID = messageObject.id;
+			status.initialized = true;
+			if (status.enabled) {
+				connect();
 			}
 		}
 	};
@@ -283,22 +297,19 @@ module.exports = function () {
 	/*****************************************
 	 *	Messenger Dispatch
 	 *****************************************/
-	var dispatchMessage = function (messageData) {
-		if (messageData && messageData != '') {
+	var dispatch = function (messageData) {
+		if (status.enabled) {
 			var messageObject = JSON.parse(messageData);
 			if ((messageObject || {}).id) {
-				lastRequestID = messageObject.id;
-				if (messengerStatus.enabled) {
-					switch (messageObject.action) {
-					case MESSENGER_CONST.ACTION.ECHIP_SET:
-						eChipSetMethod(messageObject.data, function () {
-							messengerSetEChip(messageObject.id);
-						});
-						break;
-					case MESSENGER_CONST.ACTION.ECHIP_GET:
-						messengerGetEChip(messageObject.id, eChipGetMethod(messageObject));
-						break;
-					}
+				switch (messageObject.action) {
+				case MESSENGER_CONST.ACTION.ECHIP_SET:
+					onSetRequestCallback(messageObject.data, function () {
+						setRequestResponse(messageObject.id);
+					});
+					break;
+				case MESSENGER_CONST.ACTION.ECHIP_GET:
+					getRequestResponse(messageObject.id, onGetRequestCallback(messageObject));
+					break;
 				}
 			}
 		}
@@ -307,64 +318,57 @@ module.exports = function () {
 	/*****************************************
 	 *	Messenger Actions
 	 *****************************************/
-	var messengerConnect = function () {
-		if (connectionRequestMessage) {
-			var connectionResponseObject = {
-				id : connectionRequestMessage.id,
-				type : MESSENGER_CONST.TYPE.RESPONSE,
-				action : MESSENGER_CONST.ACTION.CONNECT,
-				data : {
-					actions : []
-				}
+	var connect = function () {
+		if (connectionRequestID) {
+			var data = {
+				actions : []
 			};
-			if (messengerStatus.actions.eChipSet) {
-				connectionResponseObject.data.actions.push(MESSENGER_CONST.ACTION.ECHIP_SET);
+			if (status.actions.eChipSet) {
+				data.actions.push(MESSENGER_CONST.ACTION.ECHIP_SET);
 			}
-			if (messengerStatus.actions.eChipGet) {
-				connectionResponseObject.data.actions.push(MESSENGER_CONST.ACTION.ECHIP_GET);
+			if (status.actions.eChipGet) {
+				data.actions.push(MESSENGER_CONST.ACTION.ECHIP_GET);
 			}
-			sendMessage(connectionResponseObject);
+			composeMessage(connectionRequestID, MESSENGER_CONST.TYPE.RESPONSE, MESSENGER_CONST.ACTION.CONNECT, data);
 		}
 	};
 
-	var messengerGetEChip = function (id, data) {
-		var responseObject = {
-			id : id,
-			type : MESSENGER_CONST.TYPE.RESPONSE,
-			action : MESSENGER_CONST.ACTION.ECHIP_GET,
-			data : data
-		};
-		sendMessage(responseObject);
+	var getRequestResponse = function (id, data) {
+		composeMessage(id, MESSENGER_CONST.TYPE.RESPONSE, MESSENGER_CONST.ACTION.ECHIP_GET, data);
 	};
 
-	var messengerSetEChip = function (id) {
-		var responseObject = {
-			id : id,
-			type : MESSENGER_CONST.TYPE.RESPONSE,
-			action : MESSENGER_CONST.ACTION.ECHIP_SET,
-			data : {
-				success : true
-			}
+	var setRequestResponse = function (id) {
+		var data = {
+			success : true
 		};
-		sendMessage(responseObject);
+		composeMessage(id, MESSENGER_CONST.TYPE.RESPONSE, MESSENGER_CONST.ACTION.ECHIP_SET, data);
 	};
 
 	/*****************************************
 	 *	Messenger Enabled
 	 *****************************************/
-	messenger.enable = function (sendMethod, receiveMethod) {
-		if (typeof sendMethod === 'function') {
-			messengerStatus.actions.eChipGet = true;
-			eChipGetMethod = sendMethod;
+	messenger.enable = function (onGetRequest, onSetRequest) {
+		if (typeof onGetRequest === 'function') {
+			status.actions.eChipGet = true;
+			onGetRequestCallback = onGetRequest;
 		}
-		if (typeof receiveMethod === 'function') {
-			messengerStatus.actions.eChipSet = true;
-			eChipSetMethod = receiveMethod;
+		if (typeof onSetRequest === 'function') {
+			status.actions.eChipSet = true;
+			onSetRequestCallback = onSetRequest;
 		}
-		messengerStatus.enabled = true;
-		if (messengerStatus.initialized) {
-			messengerConnect();
+		status.enabled = true;
+		if (status.initialized) {
+			connect();
 		}
+	};
+
+	/*****************************************
+	 *	Messenger Disable
+	 *****************************************/
+	messenger.disable = function () {
+		status.enabled = false;
+		onGetRequestCallback = null;
+		onSetRequestCallback = null;
 	};
 
 	window.addEventListener('message', receiveMessage);
