@@ -1,6 +1,6 @@
 module.exports = function () {
 	'use strict';
-	var m = {};
+	var machine = {};
 
 	/*****************************************
 	 *	Machine Definitions
@@ -180,7 +180,7 @@ module.exports = function () {
 	 *	but it will on any browser.
 	 *****************************************/
 
-	m.getMachine = function (model) {
+	machine.getMachineDetails = function (model) {
 		for (var i = 0; i < MACHINES.length; i++) {
 			for (var x = 0; x < MACHINES[i].models.length; x++) {
 				if (MACHINES[i].models[x] == model) {
@@ -190,6 +190,6 @@ module.exports = function () {
 		}
 	};
 
-	return m;
+	return machine;
 }
 ();
