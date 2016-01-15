@@ -1,6 +1,6 @@
 {
   "name": "keiser-echip-utilities",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Keiser eChip Utilities",
   "main": "./src/main.js",
   "scripts": {
