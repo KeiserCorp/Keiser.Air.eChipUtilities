@@ -3,20 +3,20 @@
 	"version": "0.1.1",
 	"description": "Keiser eChip Utilities",
 	"main": "./src/main.js",
-	"scripts": {
-		"build": "gulp",
-		"watch": "gulp watch"
-	},
+	"author": "Zachary Cardoza",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/KeiserCorp/Keiser.Air.eChipUtilities.git"
 	},
-	"author": "Zachary Cardoza",
-	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/KeiserCorp/Keiser.Air.eChipUtilities/issues"
 	},
 	"homepage": "https://github.com/KeiserCorp/Keiser.Air.eChipUtilities#readme",
+	"scripts": {
+		"build": "gulp",
+		"watch": "gulp watch"
+	},
 	"devDependencies": {
 		"browserify": "^12.0.1",
 		"gulp": "^3.9.0",
