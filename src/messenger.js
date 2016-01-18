@@ -3,14 +3,14 @@ module.exports = function () {
 	var messenger = {};
 
 	const MESSENGER_CONST = {
-		TYPE : {
-			RESPONSE : 'response',
-			REQUEST : 'request'
+		TYPE: {
+			RESPONSE: 'response',
+			REQUEST: 'request'
 		},
-		ACTION : {
-			CONNECT : 'connect',
-			ECHIP_SET : 'echip-set',
-			ECHIP_GET : 'echip-get'
+		ACTION: {
+			CONNECT: 'connect',
+			ECHIP_SET: 'echip-set',
+			ECHIP_GET: 'echip-get'
 		}
 	}
 
@@ -20,12 +20,12 @@ module.exports = function () {
 	var appWindow;
 	var appOrigin;
 	var status = {
-		initialized : false,
-		connected : false,
-		enabled : false,
-		actions : {
-			eChipSet : false,
-			eChipGet : false
+		initialized: false,
+		connected: false,
+		enabled: false,
+		actions: {
+			eChipSet: false,
+			eChipGet: false
 		}
 	};
 
@@ -61,10 +61,10 @@ module.exports = function () {
 	 *****************************************/
 	var composeMessage = function (id, type, action, data) {
 		var messageObject = {
-			id : id,
-			type : type,
-			action : action,
-			data : data
+			id: id,
+			type: type,
+			action: action,
+			data: data
 		};
 		sendMessage(messageObject);
 	};
@@ -74,7 +74,8 @@ module.exports = function () {
 	 *****************************************/
 	var initialize = function (messageEvent) {
 		var messageObject = JSON.parse(messageEvent.data);
-		if ((messageObject || {}).action && messageObject.action === MESSENGER_CONST.ACTION.CONNECT) {
+		if ((messageObject || {})
+			.action && messageObject.action === MESSENGER_CONST.ACTION.CONNECT) {
 			appWindow = messageEvent.source;
 			appOrigin = messageEvent.origin;
 			connectionRequestID = messageObject.id;
@@ -91,7 +92,8 @@ module.exports = function () {
 	var dispatch = function (messageData) {
 		if (status.enabled) {
 			var messageObject = JSON.parse(messageData);
-			if ((messageObject || {}).id) {
+			if ((messageObject || {})
+				.id) {
 				switch (messageObject.action) {
 				case MESSENGER_CONST.ACTION.ECHIP_SET:
 					onSetRequestCallback(messageObject.data, function () {
@@ -112,7 +114,7 @@ module.exports = function () {
 	var connect = function () {
 		if (connectionRequestID) {
 			var data = {
-				actions : []
+				actions: []
 			};
 			if (status.actions.eChipSet) {
 				data.actions.push(MESSENGER_CONST.ACTION.ECHIP_SET);
@@ -130,7 +132,7 @@ module.exports = function () {
 
 	var setRequestResponse = function (id) {
 		var data = {
-			success : true
+			success: true
 		};
 		composeMessage(id, MESSENGER_CONST.TYPE.RESPONSE, MESSENGER_CONST.ACTION.ECHIP_SET, data);
 	};
@@ -164,5 +166,4 @@ module.exports = function () {
 
 	window.addEventListener('message', receiveMessage);
 	return messenger;
-}
-();
+}();

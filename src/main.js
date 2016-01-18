@@ -5,5 +5,4 @@ module.exports = function () {
 	keu.messenger = require('./messenger');
 
 	return keu;
-}
-();
+}();
