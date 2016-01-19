@@ -2,6 +2,9 @@ module.exports = function () {
 	'use strict';
 	var messenger = {};
 
+	/*****************************************
+	 *	Constants
+	 *****************************************/
 	const MESSENGER_CONST = {
 		TYPE: {
 			RESPONSE: 'response',
