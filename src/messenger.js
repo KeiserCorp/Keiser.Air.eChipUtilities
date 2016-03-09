@@ -104,7 +104,9 @@ module.exports = function () {
 					});
 					break;
 				case MESSENGER_CONST.ACTION.ECHIP_GET:
-					getRequestResponse(messageObject.id, onGetRequestCallback(messageObject));
+					onGetRequestCallback(messageObject.data, function (data) {
+						getRequestResponse(messageObject.id, data);
+					});
 					break;
 				}
 			}
