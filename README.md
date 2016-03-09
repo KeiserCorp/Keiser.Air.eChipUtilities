@@ -45,16 +45,16 @@ Begins communication with the Keiser eChip Portal Tool.
 Passing a `null` as either argument will disable the corresponding portal capability.
 
 ```
-var onGeRequest = function(){ return getUserData(user.id); };
+var onGetRequest = function(){ return getUserData(user.id); };
 var onSetRequest = function(data, onSuccess){
     saveUserData(data);
     onSuccess();
 };
-keu.portalMessenger.enable(onGeRequest, onSetRequest);
+keu.portalMessenger.enable(onGetRequest, onSetRequest);
 ```
 
 #### `portalMessenger.disable()`
-Stops communication with the Keiser eChip Portal Tool.  Communication can not be resumed after a `disable` call until a new connection request is made by the portal.
+Stops communication with the Keiser eChip Portal Tool.  Communication can be resumed by using the `enable` method.
 
 ### Machine
 #### `machine.getMachineDetails(modelNum)`

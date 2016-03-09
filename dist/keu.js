@@ -208,6 +208,9 @@ module.exports = function () {
 	'use strict';
 	var messenger = {};
 
+	/*****************************************
+	 *	Constants
+	 *****************************************/
 	const MESSENGER_CONST = {
 		TYPE: {
 			RESPONSE: 'response',
@@ -366,8 +369,13 @@ module.exports = function () {
 	 *****************************************/
 	messenger.disable = function () {
 		status.enabled = false;
+		status.actions.eChipGet = false;
+		status.actions.eChipSet = false;
 		onGetRequestCallback = null;
 		onSetRequestCallback = null;
+		if (status.initialized) {
+			connect();
+		}
 	};
 
 	window.addEventListener('message', receiveMessage);

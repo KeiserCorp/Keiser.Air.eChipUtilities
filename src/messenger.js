@@ -163,8 +163,13 @@ module.exports = function () {
 	 *****************************************/
 	messenger.disable = function () {
 		status.enabled = false;
+		status.actions.eChipGet = false;
+		status.actions.eChipSet = false;
 		onGetRequestCallback = null;
 		onSetRequestCallback = null;
+		if (status.initialized) {
+			connect();
+		}
 	};
 
 	window.addEventListener('message', receiveMessage);
