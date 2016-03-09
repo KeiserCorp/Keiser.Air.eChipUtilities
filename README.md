@@ -45,7 +45,11 @@ Begins communication with the Keiser eChip Portal Tool.
 Passing a `null` as either argument will disable the corresponding portal capability.
 
 ```
-var onGetRequest = function(){ return getUserData(user.id); };
+var onGetRequest = function(data, onSuccess){
+    getUserData(user.id, function(result){
+		onSuccess(result);
+	});
+};
 var onSetRequest = function(data, onSuccess){
     saveUserData(data);
     onSuccess();
