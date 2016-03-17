@@ -7,170 +7,260 @@ module.exports = function () {
 	 *****************************************/
 	const MACHINES = [{
 		models: [0x1121, 0x112A],
-		name: 'Leg Extension A250'
+		name: 'Leg Extension',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x1122, 0x112B],
-		name: 'Leg Extension A250, Range Limiter'
+		name: 'Leg Extension',
+		line: 'A250',
+		extra: 'Range Limiter',
 	}, {
 		models: [0x1131, 0x113A],
-		name: 'Leg Extension A300 120 degree'
+		name: 'Leg Extension',
+		line: 'A300',
+		extra: '120 Degree',
 	}, {
 		models: [0x1132, 0x113B],
-		name: 'Leg Extension A300 90 degree'
+		name: 'Leg Extension',
+		line: 'A300',
+		extra: '90 Degree',
 	}, {
 		models: [0x1221, 0x122A],
-		name: 'Leg Curl A250'
+		name: 'Leg Curl',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x1222, 0x122B],
-		name: 'Leg Curl A250, Range Limiter'
+		name: 'Leg Curl',
+		line: 'A250',
+		extra: 'Range Limiter',
 	}, {
 		models: [0x1231, 0x123A],
-		name: 'Leg Curl A300'
+		name: 'Leg Curl',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1321, 0x132A],
-		name: 'Chest Press A250'
+		name: 'Chest Press',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x1331, 0x133A],
-		name: 'Chest Press A300'
+		name: 'Chest Press',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1335, 0x133B],
-		name: 'Biaxial Chest Press A300'
+		name: 'Biaxial Chest Press',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1336, 0x133C],
-		name: 'Straight Push Chest Press A300'
+		name: 'Straight Push Chest Press',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1337],
-		name: 'Straight Push Chest Press A300 2010-3-1'
+		name: 'Straight Push Chest Press',
+		line: 'A300',
+		extra: '2010-3-1',
 	}, {
 		models: [0x1338],
-		name: 'Straight Push Chest Press A300 2010-9-1'
+		name: 'Straight Push Chest Press',
+		line: 'A300',
+		extra: '2010-9-1',
 	}, {
 		models: [0x1431, 0x143A],
-		name: 'Shoulder Raise A300'
+		name: 'Shoulder Raise',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1531, 0x153A],
-		name: 'Squat A300'
+		name: 'Squat',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1532, 0x153B],
-		name: 'Squat A300'
+		name: 'Squat',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1621, 0x162A],
-		name: 'Military Press A250'
+		name: 'Military Press',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x1631, 0x163A],
-		name: 'Military Press A300'
+		name: 'Military Press',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1721, 0x172A],
-		name: 'Arm Curl A250'
+		name: 'Arm Curl',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x1736, 0x173B],
-		name: 'Arm Curl A300'
+		name: 'Arm Curl',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1831, 0x183A],
-		name: 'Shrug A300'
+		name: 'Shrug',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x1921, 0x192A],
-		name: 'Tricep A250'
+		name: 'Tricep',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x1931, 0x193A],
-		name: 'Tricep A300'
-	}, {
-		models: [0x1937],
-		name: 'Engineering Test Tricep, one sided'
-	}, {
+		name: 'Tricep',
+		line: 'A300',
+		extra: '',
+	},  {
 		models: [0x2021, 0x202A],
-		name: 'Upper Back A250'
+		name: 'Upper Back',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x2031, 0x2035, 0x203A, 0x203B],
-		name: 'Upper Back A300'
+		name: 'Upper Back',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2121, 0x212A],
-		name: 'Lat Pulldown A250'
+		name: 'Lat Pulldown',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x2131, 0x213A],
-		name: 'Lat Pulldown A300'
+		name: 'Lat Pulldown',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2221, 0x222A],
-		name: 'Seated Butterfly A250'
+		name: 'Seated Butterfly',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x2231, 0x223A],
-		name: 'Seated Butterfly A300'
+		name: 'Seated Butterfly',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2235, 0x223B],
-		name: 'Seated Butterfly A350'
+		name: 'Seated Butterfly',
+		line: 'A350',
+		extra: '',
 	}, {
 		models: [0x2331, 0x233A],
-		name: 'Abductor A300'
+		name: 'Abductor',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2431, 0x243A],
-		name: 'Adductor A300'
+		name: 'Adductor',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2521, 0x252A],
-		name: 'Leg Press A250'
+		name: 'Leg Press',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x2531, 0x253A],
-		name: 'Leg Press A300'
+		name: 'Leg Press',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2621, 0x262A],
-		name: 'Standing Hip A250'
+		name: 'Standing Hip',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x2631, 0x263A],
-		name: 'Standing Hip A300'
+		name: 'Standing Hip',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2721, 0x272A],
-		name: 'Abdominal A250'
+		name: 'Abdominal',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x2731, 0x273A],
-		name: 'Abdominal A300'
+		name: 'Abdominal',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2821, 0x282A],
-		name: 'Lower Back A250'
+		name: 'Lower Back',
+		line: 'A250',
+		extra: '',
 	}, {
 		models: [0x2822, 0x282B],
-		name: 'Lower Back A250, Range Limiter'
+		name: 'Lower Back',
+		line: 'A250',
+		extra: 'Range Limiter',
 	}, {
 		models: [0x2831, 0x2836, 0x283A, 0x283B],
-		name: 'Lower Back A300'
+		name: 'Lower Back',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x2936, 0x293A],
-		name: 'Seated Calf A300'
+		name: 'Seated Calf',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x3000, 0x300A],
-		name: 'Performance Zone'
+		name: 'Performance Zone',
+		line: 'Infinity',
+		extra: '',
 	}, {
 		models: [0x3010, 0x301A],
-		name: 'Performance Trainer'
+		name: 'Performance Trainer',
+		line: 'Infinity',
+		extra: '',
 	}, {
 		models: [0x3020, 0x302A],
-		name: 'Functional Trainer'
+		name: 'Functional Trainer',
+		line: 'Infinity',
+		extra: '',
 	}, {
 		models: [0x3030, 0x303A],
-		name: 'Triple Trainer'
+		name: 'Triple Trainer',
+		line: 'Infinity',
+		extra: '',
 	}, {
 		models: [0x3040, 0x304A],
-		name: 'Functional Wall Trainer'
+		name: 'Functional Wall Trainer',
+		line: 'Infinity',
+		extra: '',
 	}, {
 		models: [0x3100],
-		name: 'Rack, Seat Settings'
+		name: 'Rack',
+		line: 'Power Rack',
+		extra: 'Seat Settings',
 	}, {
 		models: [0x3103, 0x3104, 0x3105, 0x3106, 0x3110, 0x3111, 0x3120],
-		name: 'Rack, Iron Weight'
+		name: 'Rack',
+		line: 'Power Rack',
+		extra: 'Iron Weight',
 	}, {
 		models: [0x3231],
-		name: 'Single Runner'
+		name: 'Single Runner',
+		line: 'A300',
+		extra: '',
 	}, {
 		models: [0x3232, 0x323A],
-		name: 'Dual Runner'
-	}, {
-		models: [0x9990],
-		name: 'One arm bandit test stand'
-	}, {
-		models: [0x9999],
-		name: 'Pressure Gauge PSI'
-	}, {
-		models: [0x9998],
-		name: 'Pressure Gauge KPA'
-	}];
+		name: 'Dual Runner',
+		line: 'A300',
+		extra: '',
+	},];
 
 	/*****************************************
 	 *	Machine Search
