@@ -38,23 +38,23 @@ The `portalMessenger` library allows communication with the Keiser eChip Portal 
 #### `portalMessenger.enable(onSendRequest, onReceiveRequest)`
 Begins communication with the Keiser eChip Portal Tool.
 
-`onGetRequest` argument is a function called whenever a request to get data is made by the portal.  The function should return the object to be sent in response to the portal request.
+`onSendRequest` argument is a function called whenever a request to get data is made by the portal.  The function should return the object to be sent in response to the portal request.
 
-`onSetRequest` agrument is a function called whenever a request to send data is made by the portal.  The function should receive a `data` object and an `onSuccess` function.  The `data` object is the data received from the portal.  The `onSuccess` function should be ran upon successful processing of the `data` object.
+`onReceiveRequest` agrument is a function called whenever a request to send data is made by the portal.  The function should receive a `data` object and an `onSuccess` function.  The `data` object is the data received from the portal.  The `onSuccess` function should be ran upon successful processing of the `data` object.
 
 Passing a `null` as either argument will disable the corresponding portal capability.
 
 ```
-var onGetRequest = function(data, onSuccess){
+var onSendRequest = function(data, onSuccess){
     getUserData(user.id, function(result){
         onSuccess(result);
     });
 };
-var onSetRequest = function(data, onSuccess){
+var onReceiveRequest = function(data, onSuccess){
     saveUserData(data);
     onSuccess();
 };
-keu.portalMessenger.enable(onGetRequest, onSetRequest);
+keu.portalMessenger.enable(onSendRequest, onReceiveRequest);
 ```
 
 #### `portalMessenger.disable()`
