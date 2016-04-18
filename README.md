@@ -62,7 +62,7 @@ Stops communication with the Keiser eChip Portal Tool.  Communication can be res
 
 ### Machine
 #### `machine.getMachineDetails(modelNum)`
-Retreives machine details based on model number argument (`modelNum`).
+Retrieves machine details based on model number argument (`modelNum`).
 
 ```
 var details = machine.getMachineDetails(0x1335);
