@@ -47,8 +47,8 @@ Passing a `null` as either argument will disable the corresponding portal capabi
 ```
 var onGetRequest = function(data, onSuccess){
     getUserData(user.id, function(result){
-		onSuccess(result);
-	});
+        onSuccess(result);
+    });
 };
 var onSetRequest = function(data, onSuccess){
     saveUserData(data);
@@ -70,8 +70,10 @@ var details = machine.getMachineDetails(0x1335);
 
 ```
 {
-    models : [0x1335, 0x133B],
-    name : 'Biaxial Chest Press A300'
+    models: [0x1335, 0x133B],
+    name: 'Biaxial Chest Press',
+    line: 'A300',
+    extra: '',
 }
 ```
 
