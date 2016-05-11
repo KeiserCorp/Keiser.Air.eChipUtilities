@@ -86,6 +86,11 @@ module.exports = function () {
 		line: 'A300',
 		extra: '',
 	}, {
+		models: [0x1550],
+		name: 'Belt Squat',
+		line: 'A300',
+		extra: '',
+	}, {
 		models: [0x1621, 0x162A],
 		name: 'Military Press',
 		line: 'A250',
