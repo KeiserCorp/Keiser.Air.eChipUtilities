@@ -5,7 +5,7 @@ module.exports = function () {
 	/*****************************************
 	 *	Machine Definitions
 	 *****************************************/
-	const MACHINES = [{
+	var MACHINES = [{
 		models: [0x1121, 0x112A],
 		name: 'Leg Extension',
 		line: 'A250',

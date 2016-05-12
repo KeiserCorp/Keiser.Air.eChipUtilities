@@ -5,7 +5,7 @@ module.exports = function () {
 	/*****************************************
 	 *	Constants
 	 *****************************************/
-	const MESSENGER_CONST = {
+	var MESSENGER_CONST = {
 		TYPE: {
 			RESPONSE: 'response',
 			REQUEST: 'request'
