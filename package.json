@@ -1,6 +1,6 @@
 {
 	"name": "keiser-echip-utilities",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Keiser eChip Utilities",
 	"main": "./src/main.js",
 	"author": "Zachary Cardoza",
