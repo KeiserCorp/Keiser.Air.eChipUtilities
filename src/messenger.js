@@ -76,7 +76,7 @@ module.exports = function () {
 	 *	Messenger Initialization
 	 *****************************************/
 	var initialize = function (messageEvent) {
-		var messageObject = JSON.parse(messageEvent.data || '');
+		var messageObject = JSON.parse(messageEvent.data || '{}');
 		if ((messageObject || {})
 			.action && messageObject.action === MESSENGER_CONST.ACTION.CONNECT) {
 			appWindow = messageEvent.source;
