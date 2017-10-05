@@ -78,4 +78,6 @@ var details = machine.getMachineDetails(0x1335);
 ```
 
 ## Copyright and License
-Copyright [Keiser Corporation](http://keiser.com/) under the [MIT license](LICENSE.md).
+Copyright 2016 [Keiser Corporation](http://keiser.com/).
+
+Licensed under the [MIT license](LICENSE.md).
