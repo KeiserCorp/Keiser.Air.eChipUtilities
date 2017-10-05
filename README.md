@@ -77,8 +77,5 @@ var details = machine.getMachineDetails(0x1335);
 }
 ```
 
-## Contributors
-- [bayssmekanique](https://github.com/bayssmekanique)
-
 ## Copyright and License
 Copyright [Keiser Corporation](http://keiser.com/) under the [MIT license](LICENSE.md).
