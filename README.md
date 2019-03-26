@@ -1,4 +1,6 @@
 # Keiser eChip Utilities
+⛔️ [DEPRECATED] This repository is no longer maintained.
+
 ## Project
 Utilities to assist development of applications utilizing the Keiser eChip and Keiser eChip Portal Tool.
 
